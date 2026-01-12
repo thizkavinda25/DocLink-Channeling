@@ -1,10 +1,26 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:e_channeling/screens/auth_screen.dart';
+import 'package:e_channeling/screens/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
+import 'firebase_options.dart';
+import 'providers/auth_provider.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(
+    MultiProvider(
+      providers: [
+        // Add your providers here
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
+      ],
+      child: DevicePreview(enabled: true, builder: (context) => const MyApp()),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +35,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      home: const AuthScreen(),
+      builder: EasyLoading.init(),
+      home: const SplashScreen(),
     );
   }
 }

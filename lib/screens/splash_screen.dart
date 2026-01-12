@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:e_channeling/screens/auth_screen.dart';
+import 'package:e_channeling/screens/home_screen.dart';
 import 'package:e_channeling/utils/navigate_manage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -16,10 +18,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(
-      Duration(seconds: 3),
-      () => NavigateManage.goTo(context, AuthScreen()),
-    );
+    if (FirebaseAuth.instance.currentUser == null) {
+      Timer(const Duration(seconds: 3), () {
+        NavigateManage.goReplace(context, AuthScreen());
+      });
+    } else {
+      Timer(const Duration(seconds: 3), () {
+        NavigateManage.goReplace(context, HomeScreen());
+      });
+    }
   }
 
   @override
