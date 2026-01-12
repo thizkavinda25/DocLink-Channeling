@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "969777262856",
+    "project_id": "doc-link-e5fb8",
+    "storage_bucket": "doc-link-e5fb8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969777262856:android:82a5e3bb1ea89de4303cbd",
+        "android_client_info": {
+          "package_name": "com.example.e_channeling"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp7xJ2iSyv7LKoLok8dQRc-2KcLKSST_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
