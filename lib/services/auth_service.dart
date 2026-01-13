@@ -54,6 +54,10 @@ class AuthService {
     return null;
   }
 
+  Future<void> resetPassword({required String email}) async {
+    FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
   Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     NavigateManage.goReplace(context, AuthScreen());

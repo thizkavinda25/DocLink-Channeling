@@ -105,4 +105,38 @@ class AuthProvider extends ChangeNotifier {
       _passwordController.clear();
     }
   }
+
+  Future<void> sendResetEmail(BuildContext context) async {
+    if (_emailController.text.trim().isEmpty) {
+      CustomDialogs.errorMessage(context, 'Please enter your email');
+      return;
+    }
+
+    if (!RegExp(
+      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+",
+    ).hasMatch(_emailController.text.trim())) {
+      CustomDialogs.errorMessage(context, 'Invalid email address');
+      return;
+    }
+
+    EasyLoading.show(status: 'Sending reset email...');
+
+    try {
+      await Future.delayed(const Duration(milliseconds: 300));
+      await AuthService().resetPassword(email: _emailController.text.trim());
+
+      if (context.mounted) {
+        CustomDialogs.successMessage(
+          context,
+          'Password reset email sent successfully',
+        );
+      }
+
+      _emailController.clear();
+    } catch (e) {
+      EasyLoading.showError('Something went wrong');
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
 }

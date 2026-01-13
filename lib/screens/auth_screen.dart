@@ -122,7 +122,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       } else if (authMode == 'signin') {
                         authProvider.login(context);
                       } else {
-                        // Call password reset method
+                        authProvider.sendResetEmail(context);
                       }
                     },
                   ),
