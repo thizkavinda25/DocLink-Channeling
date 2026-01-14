@@ -7,6 +7,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../services/user_service.dart';
+import 'doctor_home_screen.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -17,17 +20,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    super.initState();
-    if (FirebaseAuth.instance.currentUser == null) {
-      Timer(const Duration(seconds: 3), () {
-        NavigateManage.goReplace(context, AuthScreen());
-      });
+  super.initState();
+  Timer(const Duration(seconds: 3), () async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      NavigateManage.goReplace(context, AuthScreen());
     } else {
-      Timer(const Duration(seconds: 3), () {
+      final userData = await UserService().getUserById(user.uid);
+
+      if (userData!.role == 'doctor') {
+        NavigateManage.goReplace(context, DoctorHomeScreen());
+      } else {
         NavigateManage.goReplace(context, HomeScreen());
-      });
+      }
     }
-  }
+  });
+}
 
   @override
   Widget build(BuildContext context) {

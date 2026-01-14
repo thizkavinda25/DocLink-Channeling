@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_channeling/models/user_model.dart';
+import 'package:e_channeling/screens/doctor_home_screen.dart';
 import 'package:e_channeling/screens/home_screen.dart';
 import 'package:e_channeling/services/auth_service.dart';
 import 'package:e_channeling/services/user_service.dart';
 import 'package:e_channeling/utils/custom_dialogs.dart';
+import 'package:e_channeling/utils/custom_message.dart';
 import 'package:e_channeling/utils/navigate_manage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -21,6 +25,14 @@ class AuthProvider extends ChangeNotifier {
       TextEditingController();
   TextEditingController get confirmPasswordController =>
       _confirmPasswordController;
+
+  String _selectedRole = 'patient';
+  String get selectedRole => _selectedRole;
+
+  void setRole(String role) {
+    _selectedRole = role;
+    notifyListeners();
+  }
 
   Future<void> createAccount(BuildContext context) async {
     if (_nameController.text.trim().isEmpty ||
@@ -59,6 +71,7 @@ class AuthProvider extends ChangeNotifier {
           uid: user.uid,
           name: _nameController.text.trim(),
           email: _emailController.text.trim(),
+          role: _selectedRole,
         );
         final isSuccess = await UserService().saveUserData(userModel);
         if (isSuccess && context.mounted) {
@@ -97,7 +110,12 @@ class AuthProvider extends ChangeNotifier {
         context: context,
       );
       if (user != null && context.mounted) {
-        NavigateManage.goReplace(context, HomeScreen());
+        final userData = await UserService().getUserById(user.uid);
+        if (userData!.role == 'doctor' && context.mounted) {
+          NavigateManage.goReplace(context, DoctorHomeScreen());
+        } else {
+          NavigateManage.goReplace(context, HomeScreen());
+        }
       }
 
       EasyLoading.dismiss();
@@ -126,10 +144,7 @@ class AuthProvider extends ChangeNotifier {
       await AuthService().resetPassword(email: _emailController.text.trim());
 
       if (context.mounted) {
-        CustomDialogs.successMessage(
-          context,
-          'Password reset email sent successfully',
-        );
+        CustomMessage.customMessage(context);
       }
 
       _emailController.clear();

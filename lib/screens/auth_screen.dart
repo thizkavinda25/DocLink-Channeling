@@ -30,10 +30,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   Text.rich(
                     style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
                     TextSpan(
-                      text: 'Your',
+                      text: 'Doc',
                       children: [
                         TextSpan(
-                          text: ' Health',
+                          text: 'Link',
                           style: TextStyle(color: Colors.blueAccent),
                         ),
                       ],
@@ -53,6 +53,8 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ),
                   SizedBox(height: 30),
+                  if (authMode == 'signup') _roleSelector(authProvider),
+                  SizedBox(height: 15),
                   if (authMode == 'signup')
                     CustomTextField(
                       prefixIcon: Icon(
@@ -154,6 +156,35 @@ class _AuthScreenState extends State<AuthScreen> {
       },
     );
   }
+}
+
+Widget _roleSelector(AuthProvider authProvider) {
+  return Row(
+    children: [
+      Expanded(
+        child: RadioListTile(
+          activeColor: const Color.fromARGB(255, 33, 113, 178),
+          title: const Text('Patient'),
+          value: 'patient',
+          groupValue: authProvider.selectedRole,
+          onChanged: (value) {
+            authProvider.setRole(value!);
+          },
+        ),
+      ),
+      Expanded(
+        child: RadioListTile(
+          activeColor: const Color.fromARGB(255, 33, 113, 178),
+          title: const Text('Doctor'),
+          value: 'doctor',
+          groupValue: authProvider.selectedRole,
+          onChanged: (value) {
+            authProvider.setRole(value!);
+          },
+        ),
+      ),
+    ],
+  );
 }
 
 Widget _orDivider(String authMode) {
