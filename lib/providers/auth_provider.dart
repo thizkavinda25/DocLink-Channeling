@@ -58,7 +58,7 @@ class AuthProvider extends ChangeNotifier {
       );
     } else if (_passwordController.text.trim() !=
         _confirmPasswordController.text.trim()) {
-      CustomDialogs.errorMessage(context, 'Passwords do not match');
+      CustomDialogs.errorMessage(context, 'Passwords not match');
     } else {
       EasyLoading.show(status: 'Creating account');
       final user = await AuthService().signUp(

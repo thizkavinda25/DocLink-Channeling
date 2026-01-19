@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:e_channeling/screens/auth_screen.dart';
+import 'package:e_channeling/screens/doctor_home_screen.dart';
 import 'package:e_channeling/screens/home_screen.dart';
 import 'package:e_channeling/utils/navigate_manage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../services/user_service.dart';
-import 'doctor_home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
