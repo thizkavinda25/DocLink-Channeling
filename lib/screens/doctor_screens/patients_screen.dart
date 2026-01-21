@@ -10,8 +10,6 @@ class PatientsScreen extends StatefulWidget {
 class _PatientsScreenState extends State<PatientsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text('Patient'),),
-    );
+    return Center(child: Text('Patients Screen'));
   }
 }

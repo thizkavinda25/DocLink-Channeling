@@ -1,5 +1,5 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:e_channeling/screens/bottom_nav_bar.dart';
+import 'package:e_channeling/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -14,10 +14,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
-      providers: [
-        // Add your providers here
-        ChangeNotifierProvider(create: (context) => AuthProvider()),
-      ],
+      providers: [ChangeNotifierProvider(create: (context) => AuthProvider())],
       child: DevicePreview(enabled: true, builder: (context) => const MyApp()),
     ),
   );
@@ -37,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       builder: EasyLoading.init(),
-      home: const BottomNavBar(),
+      home: const SplashScreen(),
     );
   }
 }

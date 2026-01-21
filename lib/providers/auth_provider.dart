@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:e_channeling/models/user_model.dart';
-import 'package:e_channeling/screens/doctor_home_screen.dart';
+import 'package:e_channeling/screens/doctor_screens/doctor_home_screen.dart';
 import 'package:e_channeling/screens/home_screen.dart';
 import 'package:e_channeling/services/auth_service.dart';
 import 'package:e_channeling/services/user_service.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:e_channeling/screens/auth_screen.dart';
-import 'package:e_channeling/screens/doctor_home_screen.dart';
+import 'package:e_channeling/screens/doctor_screens/doctor_bottom_nav_bar.dart';
 import 'package:e_channeling/screens/home_screen.dart';
 import 'package:e_channeling/utils/navigate_manage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,23 +20,23 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-  super.initState();
-  Timer(const Duration(seconds: 3), () async {
-    final user = FirebaseAuth.instance.currentUser;
+    super.initState();
+    Timer(const Duration(seconds: 3), () async {
+      final user = FirebaseAuth.instance.currentUser;
 
-    if (user == null) {
-      NavigateManage.goReplace(context, AuthScreen());
-    } else {
-      final userData = await UserService().getUserById(user.uid);
-
-      if (userData!.role == 'doctor') {
-        NavigateManage.goReplace(context, DoctorHomeScreen());
+      if (user == null) {
+        NavigateManage.goReplace(context, AuthScreen());
       } else {
-        NavigateManage.goReplace(context, HomeScreen());
+        final userData = await UserService().getUserById(user.uid);
+
+        if (userData!.role == 'doctor') {
+          NavigateManage.goReplace(context, DoctorBottomNavBar());
+        } else {
+          NavigateManage.goReplace(context, HomeScreen());
+        }
       }
-    }
-  });
-}
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

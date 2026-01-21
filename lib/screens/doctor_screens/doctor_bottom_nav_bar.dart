@@ -1,18 +1,18 @@
-import 'package:e_channeling/screens/doctor_home_screen.dart';
-import 'package:e_channeling/screens/patients_screen.dart';
-import 'package:e_channeling/screens/profile_screen.dart';
+import 'package:e_channeling/screens/doctor_screens/doctor_home_screen.dart';
+import 'package:e_channeling/screens/doctor_screens/patients_screen.dart';
+import 'package:e_channeling/screens/doctor_screens/profile_screen.dart';
 import 'package:e_channeling/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+class DoctorBottomNavBar extends StatefulWidget {
+  const DoctorBottomNavBar({super.key});
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBar();
+  State<DoctorBottomNavBar> createState() => _DoctorBottomNavBar();
 }
 
-class _BottomNavBar extends State<BottomNavBar> {
+class _DoctorBottomNavBar extends State<DoctorBottomNavBar> {
   int currentIndex = 0;
   final List pages = [DoctorHomeScreen(), PatientsScreen(), ProfileScreen()];
   @override
@@ -22,7 +22,7 @@ class _BottomNavBar extends State<BottomNavBar> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         selectedItemColor: CustomColors.primaryColor,
-        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Colors.black,
         backgroundColor: Colors.grey.shade100,
         onTap: (value) {
           setState(() {
@@ -43,7 +43,7 @@ class _BottomNavBar extends State<BottomNavBar> {
           BottomNavigationBarItem(
             icon: Icon(Iconsax.profile_circle),
             label: 'Profile',
-            activeIcon: Icon(Iconsax.profile_2user),
+            activeIcon: Icon(Icons.person),
           ),
         ],
       ),
