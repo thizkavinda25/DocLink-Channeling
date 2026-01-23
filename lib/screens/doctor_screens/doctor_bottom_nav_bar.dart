@@ -14,7 +14,11 @@ class DoctorBottomNavBar extends StatefulWidget {
 
 class _DoctorBottomNavBar extends State<DoctorBottomNavBar> {
   int currentIndex = 0;
-  final List pages = [DoctorHomeScreen(), PatientsScreen(), ProfileScreen()];
+  final List<Widget> pages = const [
+    DoctorHomeScreen(),
+    PatientsScreen(),
+    ProfileScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

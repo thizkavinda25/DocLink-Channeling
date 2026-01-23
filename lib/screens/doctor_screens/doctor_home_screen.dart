@@ -154,7 +154,7 @@ Widget _appoinmentStatus(
     width: width,
     height: 150,
     decoration: BoxDecoration(
-      color: Colors.grey.shade200,
+      color: Colors.grey.shade100,
       borderRadius: BorderRadius.circular(15),
     ),
 
