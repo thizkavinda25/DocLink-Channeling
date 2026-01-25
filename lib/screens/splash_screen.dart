@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:e_channeling/screens/auth_screen.dart';
+import 'package:e_channeling/screens/bottom_nav.dart';
 import 'package:e_channeling/screens/doctor_screens/doctor_bottom_nav_bar.dart';
-import 'package:e_channeling/screens/home_screen.dart';
 import 'package:e_channeling/utils/navigate_manage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (userData!.role == 'doctor') {
           NavigateManage.goReplace(context, DoctorBottomNavBar());
         } else {
-          NavigateManage.goReplace(context, HomeScreen());
+          NavigateManage.goReplace(context, BottomNav());
         }
       }
     });

@@ -1,3 +1,4 @@
+import 'package:e_channeling/services/auth_service.dart';
 import 'package:e_channeling/utils/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _topContain(),
+            _topContain(context),
             _patientAvailabilityCase(value, (bool newValue) {
               setState(() {
                 value = newValue;
@@ -67,7 +68,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
   }
 }
 
-Widget _topContain() {
+Widget _topContain(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -84,10 +85,15 @@ Widget _topContain() {
           ),
         ],
       ),
-      CircleAvatar(
-        radius: 23,
-        backgroundImage: NetworkImage(
-          'https://static.vecteezy.com/system/resources/thumbnails/028/287/555/small/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg',
+      GestureDetector(
+        onDoubleTap: () {
+          AuthService().signOut(context);
+        },
+        child: CircleAvatar(
+          radius: 23,
+          backgroundImage: NetworkImage(
+            'https://static.vecteezy.com/system/resources/thumbnails/028/287/555/small/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg',
+          ),
         ),
       ),
     ],
