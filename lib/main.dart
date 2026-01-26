@@ -1,5 +1,5 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:e_channeling/screens/splash_screen.dart';
+import 'package:e_channeling/screens/bottom_nav.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       builder: EasyLoading.init(),
-      home: const SplashScreen(),
+      home: const BottomNav(),
     );
   }
 }

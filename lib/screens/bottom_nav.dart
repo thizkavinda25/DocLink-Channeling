@@ -36,7 +36,7 @@ class _BottomNavState extends State<BottomNav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event),
-            label: 'My Appointments',
+            label: 'Appointments',
             activeIcon: Icon(Icons.calendar_month),
           ),
           BottomNavigationBarItem(
